@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/TestResources.gd" type="Script" id=1]
 [ext_resource path="res://scripts/ResourcesTimer.gd" type="Script" id=2]
 [ext_resource path="res://scripts/ResourcesManager.gd" type="Script" id=3]
+[ext_resource path="res://scenes/GUIResources.tscn" type="PackedScene" id=4]
 
 [node name="TestResources" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,3 +15,9 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Blocs" type="Node2D" parent="."]
+position = Vector2( 284.608, 121.433 )
+
+[node name="GUIResources" parent="." instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
