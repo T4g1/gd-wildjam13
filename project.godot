@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Bloc",
+"language": "GDScript",
+"path": "res://scripts/Bloc.gd"
+}, {
+"base": "Node2D",
+"class": "ResourcesManager",
+"language": "GDScript",
+"path": "res://scripts/ResourcesManager.gd"
+}, {
+"base": "Node2D",
+"class": "TestResources",
+"language": "GDScript",
+"path": "res://scripts/TestResources.gd"
+} ]
 _global_script_class_icons={
-
+"Bloc": "",
+"ResourcesManager": "",
+"TestResources": ""
 }
 
 [application]
