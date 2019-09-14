@@ -5,8 +5,10 @@
 
 [node name="Polymino" type="Node2D"]
 script = ExtResource( 1 )
-shape = 5
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
-size = 4
-show_grid = false
+margin_right = 240.0
+margin_bottom = 240.0
