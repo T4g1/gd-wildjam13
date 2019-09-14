@@ -10,5 +10,5 @@ __meta__ = {
 }
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
-margin_right = 240.0
-margin_bottom = 240.0
+grid_size = 4
+show_grid = false
