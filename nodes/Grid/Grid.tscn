@@ -42,10 +42,8 @@
 [node name="Grid" type="Node2D"]
 script = ExtResource( 1 )
 size = 20
-show_grid = false
 
 [node name="Lines" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
