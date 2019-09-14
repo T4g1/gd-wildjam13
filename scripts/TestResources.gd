@@ -2,12 +2,17 @@ extends Node2D
 class_name TestResources
 
 onready var resources_manager: ResourcesManager = $ResourcesManager
+onready var timer: ResourcesTimer = $Timer
 
 var bloc_packed: PackedScene = preload("res://scenes/Bloc.tscn")
 
 func _ready():
   resources_manager.connect("updated_resources", self, "show_resources")
   resources_manager.connect("updated_diffs", self, "show_diffs")
+  
+  timer.connect("timeout", self, "consume_produce")
+  timer.start()
+
 
 func show_resources(resources: Dictionary):
   print("resources:")
@@ -24,9 +29,6 @@ func _input(event: InputEvent):
     create_bloc(ResourcesManager.ResourceType.IRON)
   if event.is_action_pressed("ui_right"):
     create_bloc(ResourcesManager.ResourceType.WATER)
-  
-  if event.is_action_pressed("ui_accept"):
-    get_tree().call_group("bloc", "consume_and_produce")
     
 func create_bloc(type: int):
   var bloc: Bloc = bloc_packed.instance()
@@ -38,3 +40,9 @@ func create_bloc(type: int):
   
   $Blocs.add_child(bloc)
   resources_manager.update_diffs()
+  
+  timer.speed_up()
+  consume_produce()
+
+func consume_produce():
+  get_tree().call_group("bloc", "consume_and_produce")
