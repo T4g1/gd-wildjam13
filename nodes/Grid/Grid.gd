@@ -1,13 +1,17 @@
+tool
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export (int, 4, 100) var size = 15 setget set_size, get_size
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func set_size(new_size):
+	size = new_size
+	
+	$Lines.clear()
+	$Content.clear()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	for x in range(size):
+		for y in range(size):
+			$Lines.set_cell(x, y, 0)
+
+func get_size():
+	return size
