@@ -37,3 +37,10 @@ func set_content(array, size):
 		for y in range(size):
 			if array[y][x]:
 				$Content.set_cell(x, y, 0)
+
+# Compute how many cells are occupied
+func get_size():
+	if !has_node("Content"):
+		return 0
+		
+	return $Content.get_used_cells().size()
