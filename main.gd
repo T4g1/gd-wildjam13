@@ -11,12 +11,12 @@ func _ready():
 func _on_dragable_clicked(object):
 	if !held_object:
 		held_object = object
-		held_object.pickup()
+		held_object.get_node("Dragable").pickup()
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if held_object and !event.pressed:
-			held_object.drop()
+			held_object.get_node("Dragable").drop()
 			
 			if player_city.merge(held_object):
 				clear_pool()

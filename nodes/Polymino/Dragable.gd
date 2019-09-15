@@ -13,7 +13,7 @@ func _ready():
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			emit_signal("clicked", self)
+			emit_signal("clicked")
 
 func _physics_process(_delta):
 	if held:

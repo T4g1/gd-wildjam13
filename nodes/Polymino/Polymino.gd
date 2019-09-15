@@ -46,5 +46,5 @@ func set_shape(new_shape):
 	
 	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE)
 
-func _on_clicked(object):
-	emit_signal("clicked", object)
+func _on_clicked():
+	emit_signal("clicked", self)

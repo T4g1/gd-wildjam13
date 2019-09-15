@@ -4,6 +4,11 @@ extends Control
 export (int, 4, 100) var grid_size = 15 setget set_grid_size
 export (bool) var show_grid = true setget set_visibility
 
+var cell_size = 0
+
+func _ready():
+	cell_size = $Lines.cell_size
+
 func set_grid_size(new_grid_size):
 	if !has_node("Lines"):
 		return
