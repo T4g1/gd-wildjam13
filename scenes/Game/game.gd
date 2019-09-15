@@ -108,5 +108,4 @@ func check_doom():
 		_on_game_over()
 
 func _on_game_over():
-	print("game over")
-	emit_signal("game_over", score)
+	emit_signal("game_over", resources_manager.population)
