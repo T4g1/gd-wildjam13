@@ -6,6 +6,10 @@ const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
+onready var bloc_scene = preload("res://nodes/Bloc/Bloc.tscn")
+
+export (Vector2) var starting_point = Vector2(0, 0)
+
 func _ready():
 	$Ghost.remove_from_group("dragable")
 
@@ -14,6 +18,12 @@ func reset():
 	
 	for bloc in $Blocs.get_children():
 		bloc.free()
+	
+	var starting_city = bloc_scene.instance()
+	starting_city.production = 0
+	
+	$Grid.set_cell(starting_point.x, starting_point.y, 1)
+	$Blocs.add_child(starting_city)
 
 func show_ghost(polymino):
 	var city_size = $Grid.grid_size * $Grid.cell_size

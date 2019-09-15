@@ -30,6 +30,7 @@ margin_left = 512.0
 margin_top = 248.0
 margin_right = 512.0
 margin_bottom = 248.0
+starting_point = Vector2( 7, 7 )
 
 [node name="Pool" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 500.0

@@ -29,6 +29,8 @@ func _ready():
 	
 	# Connect timer to consume action
 	_error = timer.connect("timeout", self, "consume_produce")
+	
+	start_game()
     
 func start_game():
 	player_city.reset()
