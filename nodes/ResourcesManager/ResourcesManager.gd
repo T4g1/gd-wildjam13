@@ -10,7 +10,7 @@ var resources: Dictionary = {}
 var diffs: Dictionary = {}
 var population := 0
 
-export(int) var base = 15
+export(int) var base = 30
 
 func _ready():
 	reset()

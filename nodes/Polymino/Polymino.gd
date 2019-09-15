@@ -38,6 +38,7 @@ const PATTERN = [
 
 enum PolyminoShape { Z = 0, S, L, J, O, I, W }
 export(PolyminoShape) var shape = PolyminoShape.Z setget set_shape
+export(bool) var ghost := false
 
 var bloc_packed: PackedScene = preload("res://nodes/Bloc/Bloc.tscn")
 
@@ -48,15 +49,21 @@ func set_shape(new_shape):
 		return
 	
 	shape = new_shape
+	var tiles := []
 	
 	for __ in range(0, TETROMINO_SIZE):
 		# Create Bloc from prefab
 		var bloc: Bloc = bloc_packed.instance()
-		bloc.prod_type = randi() % ResourceType.Types.size()
+		var type := randi() % ResourceType.Types.size()
+		bloc.prod_type = type
 		blocs.push_front(bloc)
+		if !ghost:
+			tiles.push_front(ResourceType.TYPES_TILES_ID[type])
+		else:
+			tiles.push_front(0)
 	
 	# TODO give types to set_content
-	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE)
+	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE, tiles)
 
 func _on_clicked():
 	emit_signal("clicked", self)

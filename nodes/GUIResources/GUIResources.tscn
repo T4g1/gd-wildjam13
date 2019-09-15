@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://nodes/GUIResources/GUIResources.gd" type="Script" id=1]
 [ext_resource path="res://nodes/ResourceLabels/ResourceLabels.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/population-icon.png" type="Texture" id=3]
 [ext_resource path="res://scripts/ConsumeBar.gd" type="Script" id=4]
-[ext_resource path="res://assets/food-icon.png" type="Texture" id=5]
-[ext_resource path="res://assets/water-icon.png" type="Texture" id=6]
-[ext_resource path="res://assets/iron-icon.png" type="Texture" id=7]
+[ext_resource path="res://assets/icons/food.png" type="Texture" id=5]
+[ext_resource path="res://assets/icons/wood.png" type="Texture" id=6]
+[ext_resource path="res://assets/icons/rock.png" type="Texture" id=7]
+[ext_resource path="res://assets/icons/gold.png" type="Texture" id=8]
 
 [node name="GUIResources" type="Control"]
 anchor_right = 1.0
@@ -45,29 +46,37 @@ margin_bottom = 70.3934
 script = ExtResource( 4 )
 
 [node name="Resources" type="HBoxContainer" parent="Container"]
+anchor_left = 0.1
 anchor_top = 0.2
 anchor_right = 1.0
 anchor_bottom = 0.8
+margin_left = -93.9
 custom_constants/separation = 40
-alignment = 1
+alignment = 2
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Food" parent="Container/Resources" instance=ExtResource( 2 )]
-margin_left = 309.0
-margin_right = 389.0
+margin_left = 371.0
+margin_right = 483.0
 margin_bottom = 66.0
 icon = ExtResource( 5 )
 
-[node name="Water" parent="Container/Resources" instance=ExtResource( 2 )]
-margin_left = 429.0
-margin_right = 509.0
+[node name="Wood" parent="Container/Resources" instance=ExtResource( 2 )]
+margin_left = 523.0
+margin_right = 635.0
 margin_bottom = 66.0
 icon = ExtResource( 6 )
 
-[node name="Iron" parent="Container/Resources" instance=ExtResource( 2 )]
-margin_left = 549.0
-margin_right = 629.0
+[node name="Rock" parent="Container/Resources" instance=ExtResource( 2 )]
+margin_left = 675.0
+margin_right = 787.0
 margin_bottom = 66.0
 icon = ExtResource( 7 )
+
+[node name="Gold" parent="Container/Resources" instance=ExtResource( 2 )]
+margin_left = 827.0
+margin_right = 939.0
+margin_bottom = 66.0
+icon = ExtResource( 8 )

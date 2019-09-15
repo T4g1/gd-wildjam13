@@ -43,14 +43,15 @@ func flush():
 	$Content.clear()
 
 # Takes an array and copies it into the current grid
-# TODO: Gives tiles instead of boolean
-func set_content(array, size):
+func set_content(array, size, values):
 	$Content.clear()
 	
+	var v_index := 0
 	for x in range(size):
 		for y in range(size):
 			if array[y][x]:
-				$Content.set_cell(x, y, 0)
+				$Content.set_cell(x, y, values[v_index])
+				v_index += 1
 
 # Compute how many cells are occupied
 func get_size():
