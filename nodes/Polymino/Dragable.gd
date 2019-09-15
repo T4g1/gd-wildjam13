@@ -10,12 +10,12 @@ var grabbed_offset = Vector2()
 func _ready():
 	original_position = get_position()
 
-func _on_input_event(viewport, event, shape_idx):
+func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("clicked", self)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if held:
 		set_position(get_global_mouse_position() + grabbed_offset)
 
