@@ -30,8 +30,14 @@ func hide_ghost():
 # Return false on failed merge and does not modify anything in that case
 func merge(polymino):
 	if is_valid_placement(polymino):
-		print("merge")
-		# TODO: Do the merge
+		var cell_position = get_cell_position(polymino)
+		
+		for x in range(polymino.TETROMINO_SIZE):
+			for y in range(polymino.TETROMINO_SIZE):
+				var tile = polymino.get_node("Grid").get_cell(x, y)
+				if tile != -1:
+					$Grid.set_cell(cell_position.x + x, cell_position.y + y, tile)
+				
 		return true
 	else:
 		return false

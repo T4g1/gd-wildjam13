@@ -59,5 +59,11 @@ func get_size():
 		
 	return $Content.get_used_cells().size()
 
+func get_cell(x, y):
+	return $Content.get_cell(x, y)
+
+func set_cell(x, y, value):
+	return $Content.set_cell(x, y, value)
+
 func is_free(x, y):
 	return $Content.get_cell(x, y) == -1
