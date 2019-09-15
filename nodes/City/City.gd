@@ -8,7 +8,7 @@ const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
 onready var bloc_scene = preload("res://nodes/Bloc/Bloc.tscn")
 
-export (Vector2) var starting_point = Vector2(0, 0)
+export (Vector2) var starting_point = Vector2(7, 7)
 
 func _ready():
 	$Ghost.remove_from_group("dragable")
