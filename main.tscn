@@ -7,11 +7,14 @@
 [node name="Menus" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
 
 [node name="Introduction" parent="." instance=ExtResource( 2 )]
+mouse_filter = 2
 
 [node name="Game" parent="." instance=ExtResource( 3 )]
 visible = false
+mouse_filter = 2
 [connection signal="play" from="Introduction" to="." method="_on_play"]
 [connection signal="game_over" from="Game" to="." method="_on_game_over"]
