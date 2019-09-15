@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+signal clicked
+
 const TETROMINO_SIZE = 4
 const PATTERN = [
 	[[1, 1, 0, 0],	# Z
@@ -43,3 +45,6 @@ func set_shape(new_shape):
 	shape = new_shape
 	
 	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE)
+
+func _on_clicked(object):
+	emit_signal("clicked", object)
