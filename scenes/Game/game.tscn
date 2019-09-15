@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Game/game.gd" type="Script" id=1]
 [ext_resource path="res://nodes/City/City.tscn" type="PackedScene" id=2]
 [ext_resource path="res://nodes/Pool/Pool.gd" type="Script" id=3]
 [ext_resource path="res://nodes/Polymino/Polymino.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/ResourcesTimer.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ResourcesManager.gd" type="Script" id=6]
+[ext_resource path="res://scenes/GUIResources.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -71,3 +74,18 @@ margin_bottom = 100.0
 
 [node name="pol4" parent="VBoxContainer/Pool/Control4" instance=ExtResource( 4 )]
 shape = 6
+
+[node name="Timer" type="Timer" parent="."]
+script = ExtResource( 5 )
+
+[node name="ResourcesManager" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="doom_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="GUIResources" parent="." instance=ExtResource( 7 )]
+margin_left = -2.0
+margin_right = -2.0
+margin_bottom = -493.0

@@ -19,7 +19,7 @@ func generate_new_pool():
 		c.queue_free()
 
 	# create new polymino
-	for i in range(0,POOL_SIZE):
+	for __ in range(0, POOL_SIZE):
 		_add_polymino()
 
 func _add_polymino():
