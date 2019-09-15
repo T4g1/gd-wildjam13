@@ -48,6 +48,16 @@ _global_script_classes=[ {
 "class": "TestResources",
 "language": "GDScript",
 "path": "res://scripts/TestResources.gd"
+}, {
+"base": "Node2D",
+"class": "Polymino",
+"language": "GDScript",
+"path": "res://nodes/Polymino/Polymino.gd"
+}, {
+"base": "HBoxContainer",
+"class": "Pool",
+"language": "GDScript",
+"path": "res://nodes/Pool/Pool.gd"
 } ]
 _global_script_class_icons={
 "Bloc": "",
@@ -57,7 +67,9 @@ _global_script_class_icons={
 "ResourceType": "",
 "ResourcesManager": "",
 "ResourcesTimer": "",
-"TestResources": ""
+"TestResources": "",
+"Polymino": "",
+"Pool": ""
 }
 
 [application]
