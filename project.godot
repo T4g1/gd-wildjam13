@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/GUIResources.gd"
 }, {
+"base": "Node2D",
+"class": "Polymino",
+"language": "GDScript",
+"path": "res://nodes/Polymino/Polymino.gd"
+}, {
+"base": "HBoxContainer",
+"class": "Pool",
+"language": "GDScript",
+"path": "res://nodes/Pool/Pool.gd"
+}, {
 "base": "HBoxContainer",
 "class": "ResourceLabels",
 "language": "GDScript",
@@ -48,34 +58,23 @@ _global_script_classes=[ {
 "class": "TestResources",
 "language": "GDScript",
 "path": "res://scripts/TestResources.gd"
-}, {
-"base": "Node2D",
-"class": "Polymino",
-"language": "GDScript",
-"path": "res://nodes/Polymino/Polymino.gd"
-}, {
-"base": "HBoxContainer",
-"class": "Pool",
-"language": "GDScript",
-"path": "res://nodes/Pool/Pool.gd"
 } ]
 _global_script_class_icons={
 "Bloc": "",
 "ConsumeBar": "",
 "GUIResources": "",
+"Polymino": "",
+"Pool": "",
 "ResourceLabels": "",
 "ResourceType": "",
 "ResourcesManager": "",
 "ResourcesTimer": "",
-"TestResources": "",
-"Polymino": "",
-"Pool": ""
+"TestResources": ""
 }
 
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
 [rendering]

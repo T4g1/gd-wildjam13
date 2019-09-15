@@ -7,29 +7,29 @@ var resources_labels: Dictionary = {}
 
 
 func _ready():
-  resources_labels[ResourceType.Types.FOOD] = $Container/Resources/Food
-  resources_labels[ResourceType.Types.WATER] = $Container/Resources/Water
-  resources_labels[ResourceType.Types.IRON] = $Container/Resources/Iron
-  
-  for type in range(0, ResourceType.Types.size()):
-    var resource: ResourceLabels = resources_labels[type]
-    resource.update_total(0)
-    resource.update_diff(0)
-    
-  population.update_total(0)
+	resources_labels[ResourceType.Types.FOOD] = $Container/Resources/Food
+	resources_labels[ResourceType.Types.WATER] = $Container/Resources/Water
+	resources_labels[ResourceType.Types.IRON] = $Container/Resources/Iron
+	
+	for type in range(0, ResourceType.Types.size()):
+		var resource: ResourceLabels = resources_labels[type]
+		resource.update_total(0)
+		resource.update_diff(0)
+		
+	population.update_total(0)
 
 func update_population(value: int):
-  population.update_total(value)
-  
+	population.update_total(value)
+	
 func update_resources(values: Dictionary):
-  for key in values.keys():
-    var resource: ResourceLabels = resources_labels[key]
-    resource.update_total(values[key])
-    
+	for key in values.keys():
+		var resource: ResourceLabels = resources_labels[key]
+		resource.update_total(values[key])
+		
 func update_diffs(values: Dictionary):
-  for key in values.keys():
-    var resource: ResourceLabels = resources_labels[key]
-    resource.update_diff(values[key])
-    
+	for key in values.keys():
+		var resource: ResourceLabels = resources_labels[key]
+		resource.update_diff(values[key])
+		
 func update_timer(value: float):
-  consume_bar.update_value(value)
+	consume_bar.update_value(value)
