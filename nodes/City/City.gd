@@ -6,8 +6,6 @@ const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
-onready var bloc_scene = preload("res://nodes/Bloc/Bloc.tscn")
-
 export (Vector2) var starting_point = Vector2(7, 7)
 
 func _ready():
@@ -50,7 +48,6 @@ func merge(polymino: Polymino):
 			for y in range(polymino.TETROMINO_SIZE):
 				var tile = polymino.get_node("Grid").get_cell(x, y)
 				if tile != -1:
-					# TODO configure tile is set_cell
 					$Grid.set_cell(cell_position.x + x, cell_position.y + y, tile)
 
 		for b in polymino.get_blocs():

@@ -36,6 +36,7 @@ anchor_bottom = 0.8
 margin_left = 0.0
 margin_right = 80.0
 icon = ExtResource( 3 )
+show_diff = false
 
 [node name="ConsumeBar" type="Control" parent="Container"]
 margin_left = 104.101

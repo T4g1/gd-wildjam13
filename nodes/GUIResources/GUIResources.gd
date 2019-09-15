@@ -18,6 +18,7 @@ func _ready():
 		resource.update_diff(0)
 		
 	population.update_total(0)
+	population.update_diff(0)
 
 func update_population(value: int):
 	population.update_total(value)
