@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 472.0
+margin_top = 281.0
+margin_right = 552.0
+margin_bottom = 319.0
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 14.0
+text = "Merge Cities"
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 80.0
+margin_bottom = 38.0
+text = "Play"
