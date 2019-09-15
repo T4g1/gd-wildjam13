@@ -17,7 +17,6 @@ func _ready():
 
 func reset():
 	for type in range(0, ResourceType.Types.size()):
-		print(type)
 		resources[type] = base
 		diffs[type] = 0
 	population = 0
