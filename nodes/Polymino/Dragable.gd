@@ -22,12 +22,10 @@ func _physics_process(_delta):
 func pickup():
 	held = true
 	grabbed_offset = get_position() - get_global_mouse_position()
-	print("picked")
 
 func drop():
 	set_position(original_position)
 	held = false
-	print("dropped")
 
 func set_position(new_position):
 	get_parent().position = new_position
