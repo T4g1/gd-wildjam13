@@ -16,11 +16,12 @@ func _on_dragable_clicked(object):
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if held_object and !event.pressed:
+			held_object.drop()
+			
 			if player_city.merge(held_object):
 				clear_pool()
 				generate_pool()
-			
-			held_object.drop()
+				
 			held_object = null
 
 func _process(_delta):
