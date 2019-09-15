@@ -15,9 +15,6 @@ func _on_game_over(score):
 		$Introduction.set_highest(score)
 	
 	$GameOver.display(score, is_highest)
-	
-	$Introduction.visible = false
-	$Game.visible = false
 
 func _on_popup_hide():
 	$Introduction.visible = true
