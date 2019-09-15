@@ -29,14 +29,16 @@ func _ready():
 	
 	# Connect timer to consume action
 	_error = timer.connect("timeout", self, "consume_produce")
-	
-	start_game()
     
 func start_game():
+	player_city.reset()
+	
 	timer.start()
 	resources_manager.reset()
+	
 	# Set gui to init values
 	gui.update_resources(resources_manager.resources)
+	gui.update_diffs(resources_manager.diffs)
 	gui.update_population(resources_manager.population)
 	
 	randomize()

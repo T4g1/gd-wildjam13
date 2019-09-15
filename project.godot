@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "GUIResources",
 "language": "GDScript",
-"path": "res://scenes/GUIResources/GUIResources.gd"
+"path": "res://nodes/GUIResources/GUIResources.gd"
 }, {
 "base": "Node2D",
 "class": "Polymino",
