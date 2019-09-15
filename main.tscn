@@ -19,6 +19,7 @@ visible = false
 mouse_filter = 2
 
 [node name="GameOver" parent="." instance=ExtResource( 4 )]
+visible = false
 [connection signal="play" from="Introduction" to="." method="_on_play"]
 [connection signal="game_over" from="Game" to="." method="_on_game_over"]
 [connection signal="hide" from="GameOver" to="." method="_on_popup_hide"]

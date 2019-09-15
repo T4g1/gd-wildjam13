@@ -60,7 +60,7 @@ func set_shape(new_shape):
 		if !ghost:
 			tiles.push_front(ResourceType.TYPES_TILES_ID[type])
 		else:
-			tiles.push_front(0)
+			tiles.push_front(8)
 	
 	# TODO give types to set_content
 	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE, tiles)

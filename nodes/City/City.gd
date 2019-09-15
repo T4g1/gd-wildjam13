@@ -19,7 +19,7 @@ func reset():
 	for bloc in $Blocs.get_children():
 		bloc.free()
 	
-	$Grid.set_cell(starting_point.x, starting_point.y, 1)
+	$Grid.set_cell(starting_point.x, starting_point.y, 8)
 
 func show_ghost(polymino):
 	var city_size = $Grid.grid_size * $Grid.cell_size
