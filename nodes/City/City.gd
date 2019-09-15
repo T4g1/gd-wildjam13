@@ -6,8 +6,6 @@ const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
-onready var bloc_scene = preload("res://nodes/Bloc/Bloc.tscn")
-
 export (Vector2) var starting_point = Vector2(0, 0)
 
 func _ready():
@@ -90,15 +88,10 @@ func is_valid_placement(polymino):
 	
 	# Check one adjacent tile is not empty
 	var is_adjacent = false
-	print(check_pile.size())
 	for position in check_pile:
-		#print(position)
 		if !$Grid.is_free(position.x, position.y):
 			is_adjacent = true
 			break
-	
-	if is_adjacent:
-		print("neighboor")
 	
 	return is_empty and is_adjacent
 

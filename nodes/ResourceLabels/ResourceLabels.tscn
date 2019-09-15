@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/tiles/food.png" type="Texture" id=2]
 [ext_resource path="res://assets/chi_kare_go.tres" type="DynamicFont" id=3]
 
-
 [node name="ResourceLabels" type="HBoxContainer"]
 margin_left = 512.0
 margin_right = 592.0
