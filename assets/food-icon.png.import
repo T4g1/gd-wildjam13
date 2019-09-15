@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/food-icon.png-68571cf6053f1eedde3653bd4fdccb28.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/food-icon.png"
-dest_files=[ "res://.import/food-icon.png-68571cf6053f1eedde3653bd4fdccb28.stex" ]
-
 [params]
 
 compress/mode=0

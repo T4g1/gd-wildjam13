@@ -60,7 +60,7 @@ func set_shape(new_shape):
 		if !ghost:
 			tiles.push_front(ResourceType.TYPES_TILES_ID[type])
 		else:
-			tiles.push_front(0)
+			tiles.push_front(8)
 	
 	# TODO give types to set_content
 	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE, tiles)
@@ -70,4 +70,26 @@ func _on_clicked():
 
 func get_blocs() -> Array:
 	return blocs
+
+func get_production(type):
+	var total = 0
+	for bloc in blocs:
+		if bloc.prod_type == type:
+			total += bloc.production
+		else:
+			total -= 1
+	
+	return total
+
+func get_production_food():
+	return get_production(ResourceType.Types.FOOD)
+
+func get_production_wood():
+	return get_production(ResourceType.Types.WOOD)
+
+func get_production_rock():
+	return get_production(ResourceType.Types.ROCK)
+
+func get_production_gold():
+	return get_production(ResourceType.Types.GOLD)
 

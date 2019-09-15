@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/iron-icon.png-ab4c1ac7991bfd04002538e46dd64129.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/iron-icon.png"
-dest_files=[ "res://.import/iron-icon.png-ab4c1ac7991bfd04002538e46dd64129.stex" ]
-
 [params]
 
 compress/mode=0

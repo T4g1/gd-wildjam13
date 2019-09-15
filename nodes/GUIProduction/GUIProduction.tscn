@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://nodes/GUIProduction/GUIProduction.gd" type="Script" id=1]
+[ext_resource path="res://nodes/ResourceLabels/ResourceLabels.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/icons/food.png" type="Texture" id=3]
+[ext_resource path="res://assets/icons/wood.png" type="Texture" id=4]
+[ext_resource path="res://assets/icons/rock.png" type="Texture" id=5]
+[ext_resource path="res://assets/icons/gold.png" type="Texture" id=6]
+
+[node name="GUIProduction" type="GridContainer"]
+rect_scale = Vector2( 0.5, 0.5 )
+columns = 2
+script = ExtResource( 1 )
+
+[node name="Food" parent="." instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_right = 112.0
+margin_bottom = 66.0
+icon = ExtResource( 3 )
+show_total = false
+
+[node name="Wood" parent="." instance=ExtResource( 2 )]
+margin_left = 116.0
+margin_right = 228.0
+margin_bottom = 66.0
+icon = ExtResource( 4 )
+show_total = false
+
+[node name="Rock" parent="." instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 70.0
+margin_right = 112.0
+margin_bottom = 136.0
+icon = ExtResource( 5 )
+show_total = false
+
+[node name="Gold" parent="." instance=ExtResource( 2 )]
+margin_left = 116.0
+margin_top = 70.0
+margin_right = 228.0
+margin_bottom = 136.0
+icon = ExtResource( 6 )
+show_total = false

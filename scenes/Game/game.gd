@@ -14,43 +14,43 @@ onready var doom: Timer = $doom_timer
 
 func _ready():
 	player_city = find_node("PlayerCity")
-	
+
 	var _error = pool.connect("add_polymino", self, "_on_add_polymino")
 	_error = pool.connect("remove_polymino", self, "_on_remove_polymino")
 	_error = player_city.connect("add_bloc", self, "_on_add_bloc")
-	
+
 	# Connect resource manager to GUI
 	_error = resources_manager.connect("updated_resources", gui, "update_resources")
 	_error = resources_manager.connect("updated_diffs", gui, "update_diffs")
 	_error = resources_manager.connect("updated_population", gui, "update_population")
-	
+
 	# Connect resource manager to game_over logic
 	_error = resources_manager.connect("is_empty", self, "init_doom")
 	_error = doom.connect("timeout", self, "check_doom")
-	
+
 	# Connect timer to consume action
 	_error = timer.connect("timeout", self, "consume_produce")
-		
+
 func start_game():
 	timer.init()
 	timer.start()
 	resources_manager.reset()
 	player_city.reset()
-	
+
 	# Set gui to init values
 	gui.update_resources(resources_manager.resources)
 	gui.update_diffs(resources_manager.diffs)
 	gui.update_population(resources_manager.population)
-	
+
 	randomize()
 	generate_pool()
-	
+
 	running = true
 
 func _on_dragable_clicked(object):
 	if !running:
 		return
-	
+
 	if !held_object:
 		held_object = object
 		held_object.get_node("Dragable").pickup()
@@ -59,7 +59,7 @@ func _on_dragable_clicked(object):
 func _unhandled_input(event):
 	if !running:
 		return
-	
+
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if held_object and !event.pressed:
 			if player_city.merge(held_object):
@@ -74,29 +74,29 @@ func _unhandled_input(event):
 				$SFX/put.play()
 			else:
 				held_object.get_node("Dragable").drop()
-			
+
 			player_city.hide_ghost()
 			held_object = null
 
 func _process(_delta):
 	if !running:
 		return
-	
+
 	if held_object:
 		player_city.show_ghost(held_object)
-		
+
 	gui.update_timer(timer.time_left / timer.wait_time)
-		
+
 func clear_pool():
 	for node in get_tree().get_nodes_in_group("dragable"):
 		node.free()
 
 func generate_pool():
 	pool.generate_new_pool()
-		
+
 func _on_add_polymino(polymino: Polymino):
 	# Connect signals
-	var _error = polymino.connect("clicked", self, "_on_dragable_clicked") 
+	var _error = polymino.connect("clicked", self, "_on_dragable_clicked")
 
 func _on_remove_polymino(polymino: Polymino):
 	polymino.disconnect("clicked", self, "_on_dragable_clicked")
