@@ -21,6 +21,7 @@ func reset():
 	
 	var starting_city = bloc_scene.instance()
 	starting_city.production = 0
+	starting_city.consumption = 0
 	
 	$Grid.set_cell(starting_point.x, starting_point.y, 1)
 	$Blocs.add_child(starting_city)
@@ -70,21 +71,41 @@ func merge(polymino: Polymino):
 func is_valid_placement(polymino):
 	var cell_position = get_cell_position(polymino)
 	
-	# Check placement
-	var is_valid = true
+	# Check placement is empty
+	var check_pile : Array = []
+	var is_empty = true
 	for x in range(polymino.TETROMINO_SIZE):
 		for y in range(polymino.TETROMINO_SIZE):
 			if !polymino.get_node("Grid").is_free(x, y):
 				var city_position = Vector2(cell_position.x + x, cell_position.y + y)
+				check_pile.append(Vector2(city_position.x,     city_position.y))
+				check_pile.append(Vector2(city_position.x + 1, city_position.y))
+				check_pile.append(Vector2(city_position.x - 1, city_position.y))
+				check_pile.append(Vector2(city_position.x,     city_position.y + 1))
+				check_pile.append(Vector2(city_position.x,     city_position.y - 1))
+				
 				if city_position.x >= 0 and  \
 					city_position.x < $Grid.grid_size and \
 					city_position.y >= 0 and  \
 					city_position.y < $Grid.grid_size:
-					is_valid = is_valid and $Grid.is_free(cell_position.x + x, cell_position.y + y)
+					is_empty = is_empty and $Grid.is_free(cell_position.x + x, cell_position.y + y)
 				else:
-					is_valid = false
+					is_empty = false
+					break
 	
-	return is_valid
+	# Check one adjacent tile is not empty
+	var is_adjacent = false
+	print(check_pile.size())
+	for position in check_pile:
+		#print(position)
+		if !$Grid.is_free(position.x, position.y):
+			is_adjacent = true
+			break
+	
+	if is_adjacent:
+		print("neighboor")
+	
+	return is_empty and is_adjacent
 
 # At which cells over the city is the most upper-left cell of the polymino 
 func get_cell_position(polymino):

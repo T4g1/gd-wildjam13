@@ -33,10 +33,10 @@ func _ready():
 	start_game()
     
 func start_game():
-	player_city.reset()
-	
 	timer.start()
 	resources_manager.reset()
+	
+	player_city.reset()
 	
 	# Set gui to init values
 	gui.update_resources(resources_manager.resources)
