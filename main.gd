@@ -4,14 +4,20 @@ var highest = 0
 
 func _on_play():
 	$Introduction.visible = false
-	$Game.visible = true
+	$GameOver.visible = true
 	
-	$Game.start_game()
+	#$Game.start_game()
 
 func _on_game_over(score):
 	if score > highest:
 		highest = score
 		$Introduction.set_highest(score)
 	
+	$Introduction.visible = false
+	$Game.visible = false
+	$GameOver.visible = true
+
+func _on_popup_hide():
 	$Introduction.visible = true
 	$Game.visible = false
+	$GameOver.visible = false

@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="GameOver" type="AcceptDialog"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -48.5
+margin_right = 66.0
+margin_bottom = 48.5
+window_title = "Game Over"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 124.0
+margin_bottom = 61.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 116.0
+margin_bottom = 14.0
+text = "Your score is"
+align = 1
+
+[node name="Score" type="Label" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 116.0
+margin_bottom = 32.0
+text = "16"
+align = 1
