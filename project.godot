@@ -76,7 +76,7 @@ _global_script_class_icons={
 
 config/name="Merge Cities"
 run/main_scene="res://main.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/tiles/empty.png"
 
 [display]
 
