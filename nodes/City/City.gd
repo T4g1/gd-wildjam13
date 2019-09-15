@@ -12,6 +12,7 @@ func show_ghost(polymino):
 # Return false on failed merge and does not modify anything in that case
 func merge(polymino):
 	if is_valid_placement(polymino):
+		print("merge")
 		# TODO: Do the merge
 		return true
 	else:
@@ -34,11 +35,6 @@ func is_valid_placement(polymino):
 				else:
 					is_valid = false
 	
-	if is_valid:
-		print("valid")
-	else:
-		print("not valid")
-		
 	return is_valid
 
 # At which cells over the city is the most upper-left cell of the polymino 

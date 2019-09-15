@@ -16,11 +16,12 @@ func _on_dragable_clicked(object):
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if held_object and !event.pressed:
-			held_object.get_node("Dragable").drop()
 			
 			if player_city.merge(held_object):
 				clear_pool()
 				generate_pool()
+			else:
+				held_object.get_node("Dragable").drop()
 				
 			held_object = null
 
@@ -31,7 +32,7 @@ func _process(_delta):
 	
 func clear_pool():
 	for node in get_tree().get_nodes_in_group("dragable"):
-		remove_child(node)
+		node.queue_free()
 	
 func generate_pool():
 	# TODO: Generate new polyminoes
