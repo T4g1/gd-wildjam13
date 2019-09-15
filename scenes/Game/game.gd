@@ -2,7 +2,6 @@ extends Control
 
 signal game_over
 
-var score = 0
 var held_object = null
 var player_city = null
 

@@ -39,7 +39,7 @@ const PATTERN = [
 enum PolyminoShape { Z = 0, S, L, J, O, I, W }
 export(PolyminoShape) var shape = PolyminoShape.Z setget set_shape
 
-var bloc_packed: PackedScene = preload("res://scenes/Bloc.tscn")
+var bloc_packed: PackedScene = preload("res://nodes/Bloc/Bloc.tscn")
 
 var blocs: Array = []
 

@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/ResourceLabels.gd" type="Script" id=1]
+[ext_resource path="res://nodes/ResourceLabels/ResourceLabels.gd" type="Script" id=1]
 [ext_resource path="res://assets/food-icon.png" type="Texture" id=2]
 [ext_resource path="res://assets/chi_kare_go.tres" type="DynamicFont" id=3]
+
 
 [node name="ResourceLabels" type="HBoxContainer"]
 margin_left = 512.0
