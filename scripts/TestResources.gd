@@ -25,6 +25,9 @@ func _input(event: InputEvent):
   if event.is_action_pressed("ui_right"):
     create_bloc(ResourcesManager.ResourceType.IRON)
     
+func _process(delta):
+  gui.update_timer(timer.time_left / timer.wait_time)
+    
 func create_bloc(type: int):
   var bloc: Bloc = bloc_packed.instance()
   bloc.prod_type = type

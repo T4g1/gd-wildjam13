@@ -2,6 +2,7 @@ extends Control
 class_name GUIResources
 
 onready var population: ResourceLabels = $Container/Population
+onready var consume_bar: ConsumeBar = $Container/ConsumeBar
 var resources_labels: Dictionary = {}
 
 
@@ -29,3 +30,6 @@ func update_diffs(values: Dictionary):
   for key in values.keys():
     var resource: ResourceLabels = resources_labels[key]
     resource.update_diff(values[key])
+    
+func update_timer(value: float):
+  consume_bar.update_value(value)
