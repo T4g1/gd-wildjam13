@@ -4,7 +4,7 @@ class_name Bloc
 signal consume
 signal produce
 
-export(int) var production := 2
+export(int) var production := 3
 export(int) var consumption := 1
 export(int, "FOOD","IRON","WATER") var prod_type: int = 0
 
