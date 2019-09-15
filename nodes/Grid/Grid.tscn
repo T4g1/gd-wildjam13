@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://nodes/Grid/Grid.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/factory.png" type="Texture" id=2]
 [ext_resource path="res://assets/tiles/farm.png" type="Texture" id=3]
-[ext_resource path="res://assets/grid_lines.png" type="Texture" id=4]
+[ext_resource path="res://assets/tiles/food.png" type="Texture" id=4]
+[ext_resource path="res://assets/tiles/gold.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles/rock.png" type="Texture" id=6]
+[ext_resource path="res://assets/tiles/wood.png" type="Texture" id=7]
+[ext_resource path="res://assets/grid_lines.png" type="Texture" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "factory.png 0"
@@ -26,10 +30,50 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shapes = [  ]
 1/z_index = 0
+2/name = "food.png 2"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 16, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
+4/name = "gold.png 4"
+4/texture = ExtResource( 5 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 16, 16 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shapes = [  ]
+4/z_index = 0
+5/name = "rock.png 5"
+5/texture = ExtResource( 6 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 16, 16 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shapes = [  ]
+5/z_index = 0
+6/name = "wood.png 6"
+6/texture = ExtResource( 7 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 16, 16 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shapes = [  ]
+6/z_index = 0
 
 [sub_resource type="TileSet" id=2]
 0/name = "grid_lines.png 0"
-0/texture = ExtResource( 4 )
+0/texture = ExtResource( 8 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 16, 16 )

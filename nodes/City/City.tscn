@@ -14,5 +14,6 @@ show_grid = true
 
 [node name="Ghost" parent="." instance=ExtResource( 3 )]
 visible = false
+ghost = true
 
 [node name="Blocs" type="Node2D" parent="."]
