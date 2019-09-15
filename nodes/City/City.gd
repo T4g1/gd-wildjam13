@@ -19,12 +19,7 @@ func reset():
 	for bloc in $Blocs.get_children():
 		bloc.free()
 	
-	var starting_city = bloc_scene.instance()
-	starting_city.production = 0
-	starting_city.consumption = 0
-	
 	$Grid.set_cell(starting_point.x, starting_point.y, 1)
-	$Blocs.add_child(starting_city)
 
 func show_ghost(polymino):
 	var city_size = $Grid.grid_size * $Grid.cell_size
