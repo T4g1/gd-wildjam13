@@ -6,6 +6,10 @@ const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
+onready var bloc_scene = preload("res://nodes/Bloc/Bloc.tscn")
+
+export (Vector2) var starting_point = Vector2(0, 0)
+
 func _ready():
 	$Ghost.remove_from_group("dragable")
 
@@ -14,6 +18,8 @@ func reset():
 	
 	for bloc in $Blocs.get_children():
 		bloc.free()
+	
+	$Grid.set_cell(starting_point.x, starting_point.y, 1)
 
 func show_ghost(polymino):
 	var city_size = $Grid.grid_size * $Grid.cell_size
@@ -60,21 +66,41 @@ func merge(polymino: Polymino):
 func is_valid_placement(polymino):
 	var cell_position = get_cell_position(polymino)
 	
-	# Check placement
-	var is_valid = true
+	# Check placement is empty
+	var check_pile : Array = []
+	var is_empty = true
 	for x in range(polymino.TETROMINO_SIZE):
 		for y in range(polymino.TETROMINO_SIZE):
 			if !polymino.get_node("Grid").is_free(x, y):
 				var city_position = Vector2(cell_position.x + x, cell_position.y + y)
+				check_pile.append(Vector2(city_position.x,     city_position.y))
+				check_pile.append(Vector2(city_position.x + 1, city_position.y))
+				check_pile.append(Vector2(city_position.x - 1, city_position.y))
+				check_pile.append(Vector2(city_position.x,     city_position.y + 1))
+				check_pile.append(Vector2(city_position.x,     city_position.y - 1))
+				
 				if city_position.x >= 0 and  \
 					city_position.x < $Grid.grid_size and \
 					city_position.y >= 0 and  \
 					city_position.y < $Grid.grid_size:
-					is_valid = is_valid and $Grid.is_free(cell_position.x + x, cell_position.y + y)
+					is_empty = is_empty and $Grid.is_free(cell_position.x + x, cell_position.y + y)
 				else:
-					is_valid = false
+					is_empty = false
+					break
 	
-	return is_valid
+	# Check one adjacent tile is not empty
+	var is_adjacent = false
+	print(check_pile.size())
+	for position in check_pile:
+		#print(position)
+		if !$Grid.is_free(position.x, position.y):
+			is_adjacent = true
+			break
+	
+	if is_adjacent:
+		print("neighboor")
+	
+	return is_empty and is_adjacent
 
 # At which cells over the city is the most upper-left cell of the polymino 
 func get_cell_position(polymino):

@@ -19,7 +19,8 @@ func reset():
 	for type in range(0, ResourceType.Types.size()):
 		resources[type] = base
 		diffs[type] = 0
-	population = 0
+	
+	population = 1
 
 func add(type: int, value: int):
 	resources[type] += value
