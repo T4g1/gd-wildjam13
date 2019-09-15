@@ -1,8 +1,73 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Game/game.gd" type="Script" id=1]
+[ext_resource path="res://nodes/City/City.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/Pool/Pool.gd" type="Script" id=3]
+[ext_resource path="res://nodes/Polymino/Polymino.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 496.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayerCity" parent="VBoxContainer/CenterContainer" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_top = 248.0
+margin_right = 512.0
+margin_bottom = 248.0
+
+[node name="Pool" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 500.0
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+custom_constants/separation = 150
+alignment = 1
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="VBoxContainer/Pool"]
+margin_left = 287.0
+margin_right = 287.0
+margin_bottom = 100.0
+
+[node name="pol1" parent="VBoxContainer/Pool/Control" instance=ExtResource( 4 )]
+shape = 1
+
+[node name="Control2" type="Control" parent="VBoxContainer/Pool"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 100.0
+
+[node name="pol2" parent="VBoxContainer/Pool/Control2" instance=ExtResource( 4 )]
+shape = 5
+
+[node name="Control3" type="Control" parent="VBoxContainer/Pool"]
+margin_left = 587.0
+margin_right = 587.0
+margin_bottom = 100.0
+
+[node name="pol3" parent="VBoxContainer/Pool/Control3" instance=ExtResource( 4 )]
+shape = 4
+
+[node name="Control4" type="Control" parent="VBoxContainer/Pool"]
+margin_left = 737.0
+margin_right = 737.0
+margin_bottom = 100.0
+
+[node name="pol4" parent="VBoxContainer/Pool/Control4" instance=ExtResource( 4 )]
+shape = 6
