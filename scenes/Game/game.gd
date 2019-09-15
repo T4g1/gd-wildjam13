@@ -30,8 +30,6 @@ func _ready():
 	
 	# Connect timer to consume action
 	_error = timer.connect("timeout", self, "consume_produce")
-	
-	start_game()
     
 func start_game():
 	timer.start()
@@ -123,4 +121,9 @@ func check_doom():
 
 func _on_game_over():
 	running = false
+	if (held_object):
+		held_object.get_node("Dragable").drop()
+		held_object = null
+		player_city.hide_ghost()
+
 	emit_signal("game_over", resources_manager.population)
