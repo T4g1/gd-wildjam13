@@ -2,6 +2,7 @@ extends Control
 
 signal game_over
 
+var running = false
 var held_object = null
 var player_city = null
 
@@ -43,13 +44,21 @@ func start_game():
 	
 	randomize()
 	generate_pool()
+	
+	running = true
 
 func _on_dragable_clicked(object):
+	if !running:
+		return
+	
 	if !held_object:
 		held_object = object
 		held_object.get_node("Dragable").pickup()
 
 func _unhandled_input(event):
+	if !running:
+		return
+	
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if held_object and !event.pressed:
 			if player_city.merge(held_object):
@@ -68,10 +77,12 @@ func _unhandled_input(event):
 			held_object = null
 
 func _process(_delta):
-	# Pass any held object to player's city for check
+	if !running:
+		return
+	
 	if held_object:
 		player_city.show_ghost(held_object)
-	# Update GUI with timer value
+		
 	gui.update_timer(timer.time_left / timer.wait_time)
     
 func clear_pool():
@@ -109,4 +120,5 @@ func check_doom():
 		_on_game_over()
 
 func _on_game_over():
+	running = false
 	emit_signal("game_over", resources_manager.population)
