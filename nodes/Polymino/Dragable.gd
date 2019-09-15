@@ -25,6 +25,7 @@ func pickup():
 
 func drop():
 	set_position(original_position)
+	get_parent().modulate = Color(1.0, 1.0, 1.0, 1.0)
 	held = false
 
 func set_position(new_position):

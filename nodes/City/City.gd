@@ -1,12 +1,30 @@
 extends Control
 
+const RED = Color(1.0, 0.0, 0.0, 0.5)
+const GREEN = Color(0.0, 1.0, 0.0, 0.5)
+const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
+
+func _ready():
+	$Ghost.remove_from_group("dragable")
+
 func show_ghost(polymino):
+	var city_size = $Grid.grid_size * $Grid.cell_size
+	var polymino_size = polymino.TETROMINO_SIZE * $Grid.cell_size
+	var offset = $Grid.rect_position - (city_size / 2) + (polymino_size / 2)
+	
+	$Ghost.visible = true
+	$Ghost.set_shape(polymino.shape)
+	$Ghost.position = offset + (get_cell_position(polymino) * $Grid.cell_size)
+	
+	polymino.modulate = BARELY_VISIBLE
+	
 	if is_valid_placement(polymino):
-		# TODO: Green visual
-		pass
+		$Ghost.modulate = GREEN
 	else:
-		# TODO: Red visual
-		pass
+		$Ghost.modulate = RED
+
+func hide_ghost():
+	$Ghost.visible = false
 
 # Merge the given polymino with the player city
 # Return false on failed merge and does not modify anything in that case

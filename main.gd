@@ -22,7 +22,8 @@ func _unhandled_input(event):
 				generate_pool()
 			else:
 				held_object.get_node("Dragable").drop()
-				
+			
+			player_city.hide_ghost()
 			held_object = null
 
 func _process(_delta):
@@ -32,7 +33,7 @@ func _process(_delta):
 	
 func clear_pool():
 	for node in get_tree().get_nodes_in_group("dragable"):
-		node.queue_free()
+		node.free()
 	
 func generate_pool():
 	# TODO: Generate new polyminoes
