@@ -76,6 +76,8 @@ func get_production(type):
 	for bloc in blocs:
 		if bloc.prod_type == type:
 			total += bloc.production
+		else:
+			total -= 1
 	
 	return total
 
