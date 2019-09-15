@@ -6,8 +6,6 @@ const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
-onready var bloc_scene = preload("res://nodes/Bloc/Bloc.tscn")
-
 export (Vector2) var starting_point = Vector2(7, 7)
 
 func _ready():
