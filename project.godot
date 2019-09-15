@@ -8,15 +8,25 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Polymino",
+"language": "GDScript",
+"path": "res://nodes/Polymino/Polymino.gd"
+}, {
+"base": "HBoxContainer",
+"class": "Pool",
+"language": "GDScript",
+"path": "res://nodes/Pool/Pool.gd"
+} ]
 _global_script_class_icons={
-
+"Polymino": "",
+"Pool": ""
 }
 
 [application]
 
 config/name="New Game Project"
-run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
 [rendering]
