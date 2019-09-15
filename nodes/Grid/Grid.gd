@@ -58,3 +58,6 @@ func get_size():
 		return 0
 		
 	return $Content.get_used_cells().size()
+
+func is_free(x, y):
+	return $Content.get_cell(x, y) == -1
