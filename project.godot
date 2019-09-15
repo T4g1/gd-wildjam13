@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bloc",
 "language": "GDScript",
-"path": "res://scripts/Bloc.gd"
+"path": "res://nodes/Bloc/Bloc.gd"
 }, {
 "base": "Control",
 "class": "ConsumeBar",
@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "GUIResources",
 "language": "GDScript",
-"path": "res://scripts/GUIResources.gd"
+"path": "res://nodes/GUIResources/GUIResources.gd"
 }, {
 "base": "Node2D",
 "class": "Polymino",
@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "HBoxContainer",
 "class": "ResourceLabels",
 "language": "GDScript",
-"path": "res://scripts/ResourceLabels.gd"
+"path": "res://nodes/ResourceLabels/ResourceLabels.gd"
 }, {
 "base": "Resource",
 "class": "ResourceType",
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "ResourcesManager",
 "language": "GDScript",
-"path": "res://scripts/ResourcesManager.gd"
+"path": "res://nodes/ResourcesManager/ResourcesManager.gd"
 }, {
 "base": "Timer",
 "class": "ResourcesTimer",
@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "TestResources",
 "language": "GDScript",
-"path": "res://scripts/TestResources.gd"
+"path": "res://scenes/TestResources/TestResources.gd"
 } ]
 _global_script_class_icons={
 "Bloc": "",
@@ -75,6 +75,7 @@ _global_script_class_icons={
 [application]
 
 config/name="New Game Project"
+run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
 [rendering]

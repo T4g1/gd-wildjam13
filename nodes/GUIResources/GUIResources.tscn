@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scripts/GUIResources.gd" type="Script" id=1]
-[ext_resource path="res://scenes/ResourceLabels.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/GUIResources/GUIResources.gd" type="Script" id=1]
+[ext_resource path="res://nodes/ResourceLabels/ResourceLabels.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/population-icon.png" type="Texture" id=3]
 [ext_resource path="res://scripts/ConsumeBar.gd" type="Script" id=4]
 [ext_resource path="res://assets/food-icon.png" type="Texture" id=5]

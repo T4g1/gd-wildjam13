@@ -39,7 +39,7 @@ const PATTERN = [
 enum PolyminoShape { Z = 0, S, L, J, O, I, W }
 export(PolyminoShape) var shape = PolyminoShape.Z setget set_shape
 
-var bloc_packed: PackedScene = preload("res://scenes/Bloc.tscn")
+var bloc_packed: PackedScene = preload("res://nodes/Bloc/Bloc.tscn")
 
 var blocs: Array = []
 
@@ -49,7 +49,7 @@ func set_shape(new_shape):
 	
 	shape = new_shape
 	
-	for i in range(0, TETROMINO_SIZE):
+	for __ in range(0, TETROMINO_SIZE):
 		# Create Bloc from prefab
 		var bloc: Bloc = bloc_packed.instance()
 		bloc.prod_type = randi() % ResourceType.Types.size()

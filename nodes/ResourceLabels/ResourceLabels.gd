@@ -9,7 +9,7 @@ onready var label_diff: Label = $Labels/diff
 
 var RED: Color = Color('#ff2626')
 var GREEN: Color = Color('#26ff26')
-var GREY: Color = Color('#838383')
+#var GREY: Color = Color('#838383')
 
 func _ready():
   $Icon.texture = icon
