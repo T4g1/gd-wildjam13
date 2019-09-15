@@ -1,5 +1,7 @@
 extends Control
 
+signal add_bloc
+
 const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
@@ -28,7 +30,7 @@ func hide_ghost():
 
 # Merge the given polymino with the player city
 # Return false on failed merge and does not modify anything in that case
-func merge(polymino):
+func merge(polymino: Polymino):
 	if is_valid_placement(polymino):
 		var cell_position = get_cell_position(polymino)
 		
@@ -36,8 +38,15 @@ func merge(polymino):
 			for y in range(polymino.TETROMINO_SIZE):
 				var tile = polymino.get_node("Grid").get_cell(x, y)
 				if tile != -1:
+					# TODO configure tile is set_cell
 					$Grid.set_cell(cell_position.x + x, cell_position.y + y, tile)
 				
+		for b in polymino.get_blocs():
+			var bloc := b as Bloc
+			$Blocs.add_child(bloc)
+			bloc.active = true
+			emit_signal("add_bloc", bloc)
+			
 		return true
 	else:
 		return false
