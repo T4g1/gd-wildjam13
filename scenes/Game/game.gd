@@ -30,11 +30,11 @@ func _ready():
 	
 	# Connect timer to consume action
 	_error = timer.connect("timeout", self, "consume_produce")
-    
+		
 func start_game():
+	timer.init()
 	timer.start()
 	resources_manager.reset()
-	
 	player_city.reset()
 	
 	# Set gui to init values
@@ -54,6 +54,7 @@ func _on_dragable_clicked(object):
 	if !held_object:
 		held_object = object
 		held_object.get_node("Dragable").pickup()
+		$SFX/drag.play()
 
 func _unhandled_input(event):
 	if !running:
@@ -70,6 +71,7 @@ func _unhandled_input(event):
 				resources_manager.increase_population(Polymino.TETROMINO_SIZE)
 				# new pool
 				generate_pool()
+				$SFX/put.play()
 			else:
 				held_object.get_node("Dragable").drop()
 			
@@ -84,14 +86,14 @@ func _process(_delta):
 		player_city.show_ghost(held_object)
 		
 	gui.update_timer(timer.time_left / timer.wait_time)
-    
+		
 func clear_pool():
 	for node in get_tree().get_nodes_in_group("dragable"):
 		node.free()
 
 func generate_pool():
 	pool.generate_new_pool()
-    
+		
 func _on_add_polymino(polymino: Polymino):
 	# Connect signals
 	var _error = polymino.connect("clicked", self, "_on_dragable_clicked") 
@@ -107,6 +109,7 @@ func _on_add_bloc(bloc: Bloc):
 func consume_produce():
 	# Get all blocs to consume and produce
 	get_tree().call_group("bloc", "consume_and_produce")
+	$SFX/consume.play()
 
 func init_doom():
 	# Start a little timer when a resource drop below 0
@@ -127,3 +130,4 @@ func _on_game_over():
 		player_city.hide_ghost()
 
 	emit_signal("game_over", resources_manager.population)
+	$SFX/game_over.play()
