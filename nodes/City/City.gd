@@ -50,7 +50,6 @@ func merge(polymino: Polymino):
 			for y in range(polymino.TETROMINO_SIZE):
 				var tile = polymino.get_node("Grid").get_cell(x, y)
 				if tile != -1:
-					# TODO configure tile is set_cell
 					$Grid.set_cell(cell_position.x + x, cell_position.y + y, tile)
 
 		for b in polymino.get_blocs():

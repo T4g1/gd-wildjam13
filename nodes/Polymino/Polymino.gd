@@ -47,10 +47,10 @@ var blocs: Array = []
 func set_shape(new_shape):
 	if !has_node("Grid"):
 		return
-	
+
 	shape = new_shape
 	var tiles := []
-	
+
 	for __ in range(0, TETROMINO_SIZE):
 		# Create Bloc from prefab
 		var bloc: Bloc = bloc_packed.instance()
@@ -61,8 +61,7 @@ func set_shape(new_shape):
 			tiles.push_front(ResourceType.TYPES_TILES_ID[type])
 		else:
 			tiles.push_front(8)
-	
-	# TODO give types to set_content
+
 	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE, tiles)
 
 func _on_clicked():
@@ -78,7 +77,7 @@ func get_production(type):
 			total += bloc.production
 		else:
 			total -= 1
-	
+
 	return total
 
 func get_production_food():
