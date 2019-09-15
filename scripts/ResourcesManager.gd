@@ -49,3 +49,9 @@ func update_diffs():
           diffs[type] -= bloc.consumption
     
     emit_signal("updated_diffs", diffs)
+
+func is_empty() -> bool:
+  var empty = false
+  for type in range(0, ResourceType.size()):
+    empty = empty || resources[type] <= 0
+  return empty

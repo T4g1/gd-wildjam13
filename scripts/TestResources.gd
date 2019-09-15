@@ -4,12 +4,16 @@ class_name TestResources
 onready var resources_manager: ResourcesManager = $ResourcesManager
 onready var timer: ResourcesTimer = $Timer
 onready var gui: GUIResources = $GUIResources
+onready var doom: Timer = $DoomTimer
 
 var bloc_packed: PackedScene = preload("res://scenes/Bloc.tscn")
 
 func _ready():
   resources_manager.connect("updated_resources", gui, "update_resources")
   resources_manager.connect("updated_diffs", gui, "update_diffs")
+  
+  resources_manager.connect("is_empty", self, "init_doom")
+  doom.connect("timeout", self, "check_doom")
   
   timer.connect("timeout", self, "consume_produce")
   timer.start()
@@ -46,3 +50,12 @@ func create_bloc(type: int):
 
 func consume_produce():
   get_tree().call_group("bloc", "consume_and_produce")
+
+func init_doom():
+  if doom.is_stopped():
+    doom.start()
+
+func check_doom():
+  if resources_manager.is_empty():
+    timer.stop()
+    $game_over.visible = true
