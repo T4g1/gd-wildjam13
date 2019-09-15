@@ -14,7 +14,7 @@ func _ready():
   pass
 
 func consume_and_produce():
-  for res_type in range(0, 3):
+  for res_type in range(0, ResourceType.Types.size()):
     if res_type == prod_type:
       emit_signal("produce", res_type, production)
     else:

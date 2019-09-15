@@ -5,12 +5,6 @@ signal is_empty
 signal updated_resources
 signal updated_diffs
 
-enum ResourceType {
-  FOOD,
-  IRON,
-  WATER,
-}
-
 var resources: Dictionary = {}
 var diffs: Dictionary = {}
 
@@ -20,7 +14,7 @@ func _ready():
   reset()
 
 func reset():
-  for type in range(0, ResourceType.size()):
+  for type in range(0, ResourceType.Types.size()):
     resources[type] = base
     diffs[type] = 0
 
@@ -35,14 +29,14 @@ func remove(type: int, value: int):
   emit_signal("updated_resources", resources)
 
 func update_diffs():
-  for type in range(0, ResourceType.size()):
+  for type in range(0, ResourceType.Types.size()):
     diffs[type] = 0
 
   var blocs := get_tree().get_nodes_in_group("bloc")
   for b_i in blocs:
     var bloc := b_i as Bloc
     if bloc.active:
-      for type in range(0, ResourceType.size()):
+      for type in range(0, ResourceType.Types.size()):
         if type == bloc.prod_type:
           diffs[type] += bloc.production
         else:
@@ -52,6 +46,6 @@ func update_diffs():
 
 func is_empty() -> bool:
   var empty = false
-  for type in range(0, ResourceType.size()):
-    empty = empty || resources[type] <= 0
+  for type in range(0, ResourceType.Types.size()):
+    empty = empty || resources[type] < 0
   return empty

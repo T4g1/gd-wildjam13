@@ -7,11 +7,11 @@ var resources_labels: Dictionary = {}
 
 
 func _ready():
-  resources_labels[ResourcesManager.ResourceType.FOOD] = $Container/Resources/Food
-  resources_labels[ResourcesManager.ResourceType.WATER] = $Container/Resources/Water
-  resources_labels[ResourcesManager.ResourceType.IRON] = $Container/Resources/Iron
+  resources_labels[ResourceType.Types.FOOD] = $Container/Resources/Food
+  resources_labels[ResourceType.Types.WATER] = $Container/Resources/Water
+  resources_labels[ResourceType.Types.IRON] = $Container/Resources/Iron
   
-  for type in range(0, ResourcesManager.ResourceType.size()):
+  for type in range(0, ResourceType.Types.size()):
     var resource: ResourceLabels = resources_labels[type]
     resource.update_total(0)
     resource.update_diff(0)
