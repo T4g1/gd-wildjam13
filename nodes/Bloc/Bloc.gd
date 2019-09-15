@@ -6,7 +6,7 @@ signal produce
 
 export(int) var production := 3
 export(int) var consumption := 1
-export(int, "FOOD","IRON","WATER") var prod_type: int = 0
+export(ResourceType.Types) var prod_type = ResourceType.Types.FOOD
 
 var active := false
 	

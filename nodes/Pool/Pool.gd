@@ -31,14 +31,15 @@ func _add_polymino():
 	
 	var production = gui_production.instance()
 	production.rect_scale = Vector2(0.5, 0.5)
-	print(production.rect_size)
 	production.rect_position.x = -60
 	production.rect_position.y = 35
+	
 	# TODO: Compute real values
-	production.set_food(4)
-	production.set_wood(1)
-	production.set_rock(2)
-	production.set_gold(0)
+	
+	production.set_food(polymino.get_production_food())
+	production.set_wood(polymino.get_production_wood())
+	production.set_rock(polymino.get_production_rock())
+	production.set_gold(polymino.get_production_gold())
 	
 	add_child(control)
 	control.add_child(polymino)

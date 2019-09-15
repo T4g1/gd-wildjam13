@@ -71,3 +71,23 @@ func _on_clicked():
 func get_blocs() -> Array:
 	return blocs
 
+func get_production(type):
+	var total = 0
+	for bloc in blocs:
+		if bloc.prod_type == type:
+			total += bloc.production
+	
+	return total
+
+func get_production_food():
+	return get_production(ResourceType.Types.FOOD)
+
+func get_production_wood():
+	return get_production(ResourceType.Types.WOOD)
+
+func get_production_rock():
+	return get_production(ResourceType.Types.ROCK)
+
+func get_production_gold():
+	return get_production(ResourceType.Types.GOLD)
+
