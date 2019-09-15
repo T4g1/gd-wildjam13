@@ -39,13 +39,28 @@ const PATTERN = [
 enum PolyminoShape { Z = 0, S, L, J, O, I, W }
 export(PolyminoShape) var shape = PolyminoShape.Z setget set_shape
 
+var bloc_packed: PackedScene = preload("res://scenes/Bloc.tscn")
+
+var blocs: Array = []
+
 func set_shape(new_shape):
 	if !has_node("Grid"):
 		return
 	
 	shape = new_shape
 	
+	for i in range(0, TETROMINO_SIZE):
+		# Create Bloc from prefab
+		var bloc: Bloc = bloc_packed.instance()
+		bloc.prod_type = randi() % ResourceType.Types.size()
+		blocs.push_front(bloc)
+	
+	# TODO give types to set_content
 	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE)
 
 func _on_clicked():
 	emit_signal("clicked", self)
+
+func get_blocs() -> Array:
+	return blocs
+

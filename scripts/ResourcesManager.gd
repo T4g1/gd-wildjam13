@@ -4,9 +4,11 @@ class_name ResourcesManager
 signal is_empty
 signal updated_resources
 signal updated_diffs
+signal updated_population
 
 var resources: Dictionary = {}
 var diffs: Dictionary = {}
+var population := 0
 
 export(int) var base = 15
 
@@ -17,6 +19,7 @@ func reset():
 	for type in range(0, ResourceType.Types.size()):
 		resources[type] = base
 		diffs[type] = 0
+	population = 0
 
 func add(type: int, value: int):
 	resources[type] += value
@@ -49,3 +52,7 @@ func is_empty() -> bool:
 	for type in range(0, ResourceType.Types.size()):
 		empty = empty || resources[type] < 0
 	return empty
+	
+func increase_population(value: int):
+	population += value
+	emit_signal("updated_population", population)
