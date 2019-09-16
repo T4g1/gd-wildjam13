@@ -7,10 +7,8 @@
 [node name="City" type="Control"]
 mouse_filter = 2
 script = ExtResource( 1 )
-starting_point = Vector2( 1, 1 )
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
-grid_size = 5
 
 [node name="Ghost" parent="." instance=ExtResource( 3 )]
 visible = false
