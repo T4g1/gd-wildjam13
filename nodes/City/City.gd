@@ -23,14 +23,20 @@ func show_ghost(polymino):
 	var city_size = $Grid.grid_size * $Grid.cell_size
 	var polymino_size = polymino.TETROMINO_SIZE * $Grid.cell_size
 	var offset = $Grid.rect_position - (city_size / 2) + (polymino_size / 2)
+	var cell_position = get_cell_position(polymino)
+	
+	# Construct ghost shape from given tetromino
+	for x in range(polymino.TETROMINO_SIZE):
+		for y in range(polymino.TETROMINO_SIZE):
+			$Ghost.tiles[y][x] = min(1, polymino.tiles[y][x] + 1) * 8
 
 	$Ghost.visible = true
-	$Ghost.set_shape(polymino.shape)
-	$Ghost.position = offset + (get_cell_position(polymino) * $Grid.cell_size)
+	$Ghost.set_content($Ghost.tiles)
+	$Ghost.position = offset + (cell_position * $Grid.cell_size)
 
 	polymino.modulate = BARELY_VISIBLE
 
-	if is_valid_placement(polymino):
+	if is_valid_placement(polymino, cell_position):
 		$Ghost.modulate = GREEN
 	else:
 		$Ghost.modulate = RED
@@ -41,9 +47,8 @@ func hide_ghost():
 # Merge the given polymino with the player city
 # Return false on failed merge and does not modify anything in that case
 func merge(polymino: Polymino):
-	if is_valid_placement(polymino):
-		var cell_position = get_cell_position(polymino)
-
+	var cell_position = get_cell_position(polymino)
+	if is_valid_placement(polymino, cell_position):
 		for x in range(polymino.TETROMINO_SIZE):
 			for y in range(polymino.TETROMINO_SIZE):
 				var tile = polymino.get_node("Grid").get_cell(x, y)
@@ -60,10 +65,25 @@ func merge(polymino: Polymino):
 	else:
 		return false
 
-func is_valid_placement(polymino):
-	var cell_position = get_cell_position(polymino)
+func can_be_placed(polymino : Polymino):
+	var placement_possible = false
+	
+	# For every rotation
+	for __ in range(4):
+		# Check every cell position possible for valid placement
+		for x in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
+			for y in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
+				var cell_position = Vector2(x, y)
+				
+				if is_valid_placement(polymino, cell_position):
+					placement_possible = true
+		
+		polymino.clockwise_rotate()
+	
+	return placement_possible
 
-	# Check placement is empty
+func is_valid_placement(polymino, cell_position):
+	# Check placement position is empty
 	var check_pile : Array = []
 	var is_empty = true
 	for x in range(polymino.TETROMINO_SIZE):
@@ -85,7 +105,7 @@ func is_valid_placement(polymino):
 					is_empty = false
 					break
 
-	# Check one adjacent tile is not empty
+	# Check one adjacent tile is not empty so it connects with the island
 	var is_adjacent = false
 	for position in check_pile:
 		if !$Grid.is_free(position.x, position.y):

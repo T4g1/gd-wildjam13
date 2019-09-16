@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 
 [node name="Ghost" parent="." instance=ExtResource( 3 )]
 visible = false
+shape = 0
 ghost = true
 
 [node name="Blocs" type="Node2D" parent="."]

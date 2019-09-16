@@ -4,35 +4,36 @@ class_name Polymino
 
 signal clicked
 
+const EMPTY_TILE = 8
 const TETROMINO_SIZE = 4
 const PATTERN = [
-	[[1, 1, 0, 0],	# Z
+	[[0, 0, 0, 0],	# Z
+	 [1, 1, 0, 0],
 	 [0, 1, 1, 0],
-	 [0, 0, 0, 0],
 	 [0, 0, 0, 0]],
-	[[0, 1, 1, 0],	# S
-	 [1, 1, 0, 0],
-	 [0, 0, 0, 0],
-	 [0, 0, 0, 0]],
-	[[1, 0, 0, 0],	# L
-	 [1, 0, 0, 0],
+	[[0, 0, 0, 0],	# S
+	 [0, 1, 1, 0],
 	 [1, 1, 0, 0],
 	 [0, 0, 0, 0]],
-	[[0, 1, 0, 0],	# J
+	[[0, 1, 0, 0],	# L
 	 [0, 1, 0, 0],
-	 [1, 1, 0, 0],
+	 [0, 1, 1, 0],
 	 [0, 0, 0, 0]],
-	[[1, 1, 0, 0],	# O
-	 [1, 1, 0, 0],
-	 [0, 0, 0, 0],
+	[[0, 0, 1, 0],	# J
+	 [0, 0, 1, 0],
+	 [0, 1, 1, 0],
 	 [0, 0, 0, 0]],
-	[[1, 0, 0, 0],	# I
-	 [1, 0, 0, 0],
-	 [1, 0, 0, 0],
-	 [1, 0, 0, 0]],
-	[[0, 1, 0, 0],	# W
+	[[0, 0, 0, 0],	# O
+	 [0, 1, 1, 0],
+	 [0, 1, 1, 0],
+	 [0, 0, 0, 0]],
+	[[0, 1, 0, 0],	# I
+	 [0, 1, 0, 0],
+	 [0, 1, 0, 0],
+	 [0, 1, 0, 0]],
+	[[0, 0, 0, 0],	# W
+	 [0, 1, 0, 0],
 	 [1, 1, 1, 0],
-	 [0, 0, 0, 0],
 	 [0, 0, 0, 0]]
 ]
 
@@ -43,30 +44,64 @@ export(bool) var ghost := false
 var bloc_packed: PackedScene = preload("res://nodes/Bloc/Bloc.tscn")
 
 var blocs: Array = []
+var tiles: Array = [
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0]
+]
 
 func set_shape(new_shape):
 	if !has_node("Grid"):
 		return
+	
+	for bloc in blocs:
+		bloc.free()
+		
+	blocs.clear()
 
 	shape = new_shape
-	var tiles := []
+	
+	# Generate an array with correct value for the tetromino
+	tiles = PATTERN[shape].duplicate(true)
+	for x in range(TETROMINO_SIZE):
+		for y in range(TETROMINO_SIZE):
+			if tiles[y][x]:
+				# Create Bloc from prefab
+				var bloc: Bloc = bloc_packed.instance()
+				var type := randi() % ResourceType.Types.size()
+				bloc.prod_type = type
+				blocs.push_front(bloc)
+				
+				tiles[y][x] = EMPTY_TILE
+				if !ghost:
+					tiles[y][x] = ResourceType.TYPES_TILES_ID[type]
+			else:
+				tiles[y][x] = -1
+	
+	set_content(tiles)
 
-	for __ in range(0, TETROMINO_SIZE):
-		# Create Bloc from prefab
-		var bloc: Bloc = bloc_packed.instance()
-		var type := randi() % ResourceType.Types.size()
-		bloc.prod_type = type
-		blocs.push_front(bloc)
-		if !ghost:
-			tiles.push_front(ResourceType.TYPES_TILES_ID[type])
-		else:
-			tiles.push_front(8)
+func set_content(new_tiles):
+	tiles = new_tiles.duplicate(true)
+	
+	$Grid.set_content(tiles, TETROMINO_SIZE)
 
-	$Grid.set_content(PATTERN[shape], TETROMINO_SIZE, tiles)
+# Rotate 90 degrees clockwise
+func clockwise_rotate():
+	var old_tiles = tiles.duplicate(true)
+	
+	for x in range(TETROMINO_SIZE):
+		for y in range(TETROMINO_SIZE):
+			tiles[x][TETROMINO_SIZE - 1 - y] = old_tiles[y][x]
+	
+	set_content(tiles)
 
 func _on_clicked():
 	emit_signal("clicked", self)
 
+func _on_double_clicked():
+	clockwise_rotate()
+	
 func get_blocs() -> Array:
 	return blocs
 
