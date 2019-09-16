@@ -75,8 +75,6 @@ func set_shape(new_shape):
 				tiles[y][x] = -1
 	
 	$Grid.set_content(tiles, TETROMINO_SIZE)
-	
-	clockwise_rotate()
 
 # Rotate 90 degrees clockwise
 func clockwise_rotate():
@@ -91,6 +89,9 @@ func clockwise_rotate():
 func _on_clicked():
 	emit_signal("clicked", self)
 
+func _on_double_clicked():
+	clockwise_rotate()
+	
 func get_blocs() -> Array:
 	return blocs
 

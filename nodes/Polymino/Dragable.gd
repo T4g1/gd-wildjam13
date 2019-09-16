@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 signal clicked
-signal double_click
+signal double_clicked
 
 var held = false
 
@@ -14,7 +14,7 @@ func _ready():
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.doubleclick:
-			emit_signal("double_click")
+			emit_signal("double_clicked")
 		elif event.button_index == BUTTON_LEFT and event.pressed:
 			emit_signal("clicked")
 
