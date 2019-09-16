@@ -14,6 +14,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+shape = 1
 
 [node name="Grid" parent="." instance=ExtResource( 2 )]
 grid_size = 4
