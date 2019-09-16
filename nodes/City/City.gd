@@ -70,11 +70,6 @@ func can_be_placed(polymino : Polymino):
 	
 	# For every rotation
 	for __ in range(4):
-		# We cannot exit the for loop, the polymino needs to be rotated until it get back to
-		# initial position
-		if placement_possible:
-			continue
-		
 		# Check every cell position possible for valid placement
 		for x in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
 			for y in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
