@@ -8,13 +8,13 @@ func _on_play():
 	
 	$Game.start_game()
 
-func _on_game_over(score):
+func _on_game_over(score, reason):
 	var is_highest = score > highest
 	if is_highest:
 		highest = score
 		$Introduction.set_highest(score)
 	
-	$GameOver.display(score, is_highest)
+	$GameOver.display(reason, score, is_highest)
 
 func _on_popup_hide():
 	$Introduction.visible = true

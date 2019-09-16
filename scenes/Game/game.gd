@@ -119,16 +119,22 @@ func init_doom():
 		doom.start()
 
 func check_game_over():
+	if !running:
+		return
+	
 	# Check at least one polymino can be placed
 	var can_play = false
 	for polymino in get_tree().get_nodes_in_group("dragable"):
 		if player_city.can_be_placed(polymino):
 			can_play = true
 	
-	if !can_play or resources_manager.is_empty():
-		_on_game_over()
+	if !can_play:
+		_on_game_over("No more possible merge")
+	
+	if resources_manager.is_empty():
+		_on_game_over("No more resources")
 
-func _on_game_over():
+func _on_game_over(reason : String):
 	timer.stop()
 	
 	running = false
@@ -137,5 +143,5 @@ func _on_game_over():
 		held_object = null
 		player_city.hide_ghost()
 
-	emit_signal("game_over", resources_manager.population)
+	emit_signal("game_over", resources_manager.population, reason)
 	$SFX/game_over.play()

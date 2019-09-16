@@ -65,16 +65,27 @@ func merge(polymino: Polymino):
 	else:
 		return false
 
-func can_be_placed(polymino):
-	# Check every cell position possible for valid placement
-	# TODO: check for all rotation too
-	for x in range($Grid.grid_size - polymino.TETROMINO_SIZE + 1):
-		for y in range($Grid.grid_size - polymino.TETROMINO_SIZE + 1):
-			var cell_position = Vector2(x, y)
-			if is_valid_placement(polymino, cell_position):
-				return true
+func can_be_placed(polymino : Polymino):
+	var placement_possible = false
 	
-	return false
+	# For every rotation
+	for __ in range(4):
+		# We cannot exit the for loop, the polymino needs to be rotated until it get back to
+		# initial position
+		if placement_possible:
+			continue
+		
+		# Check every cell position possible for valid placement
+		for x in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
+			for y in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
+				var cell_position = Vector2(x, y)
+				
+				if is_valid_placement(polymino, cell_position):
+					placement_possible = true
+		
+		polymino.clockwise_rotate()
+	
+	return placement_possible
 
 func is_valid_placement(polymino, cell_position):
 	# Check placement position is empty
