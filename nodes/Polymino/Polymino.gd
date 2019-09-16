@@ -43,8 +43,13 @@ export(bool) var ghost := false
 
 var bloc_packed: PackedScene = preload("res://nodes/Bloc/Bloc.tscn")
 
-var tiles: Array = []
 var blocs: Array = []
+var tiles: Array = [
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0]
+]
 
 func set_shape(new_shape):
 	if !has_node("Grid"):
@@ -74,6 +79,11 @@ func set_shape(new_shape):
 			else:
 				tiles[y][x] = -1
 	
+	set_content(tiles)
+
+func set_content(new_tiles):
+	tiles = new_tiles.duplicate(true)
+	
 	$Grid.set_content(tiles, TETROMINO_SIZE)
 
 # Rotate 90 degrees clockwise
@@ -84,7 +94,7 @@ func clockwise_rotate():
 		for y in range(TETROMINO_SIZE):
 			tiles[x][TETROMINO_SIZE - 1 - y] = old_tiles[y][x]
 	
-	$Grid.set_content(tiles, TETROMINO_SIZE)
+	set_content(tiles)
 
 func _on_clicked():
 	emit_signal("clicked", self)

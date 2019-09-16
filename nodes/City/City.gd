@@ -24,9 +24,14 @@ func show_ghost(polymino):
 	var polymino_size = polymino.TETROMINO_SIZE * $Grid.cell_size
 	var offset = $Grid.rect_position - (city_size / 2) + (polymino_size / 2)
 	var cell_position = get_cell_position(polymino)
+	
+	# Construct ghost shape from given tetromino
+	for x in range(polymino.TETROMINO_SIZE):
+		for y in range(polymino.TETROMINO_SIZE):
+			$Ghost.tiles[y][x] = min(1, polymino.tiles[y][x] + 1) * 8
 
 	$Ghost.visible = true
-	$Ghost.set_shape(polymino.shape)
+	$Ghost.set_content($Ghost.tiles)
 	$Ghost.position = offset + (cell_position * $Grid.cell_size)
 
 	polymino.modulate = BARELY_VISIBLE
