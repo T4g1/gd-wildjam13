@@ -26,7 +26,7 @@ func _ready():
 
 	# Connect resource manager to game_over logic
 	_error = resources_manager.connect("is_empty", self, "init_doom")
-	_error = doom.connect("timeout", self, "check_doom")
+	_error = doom.connect("timeout", self, "check_game_over")
 
 	# Connect timer to consume action
 	_error = timer.connect("timeout", self, "consume_produce")
@@ -93,6 +93,8 @@ func clear_pool():
 
 func generate_pool():
 	pool.generate_new_pool()
+	
+	check_game_over()
 
 func _on_add_polymino(polymino: Polymino):
 	# Connect signals
@@ -116,13 +118,19 @@ func init_doom():
 	if doom.is_stopped():
 		doom.start()
 
-func check_doom():
-	# Once the timer is done, if the value is still < 0, stop game
-	if resources_manager.is_empty():
-		timer.stop()
+func check_game_over():
+	# Check at least one polymino can be placed
+	var can_play = false
+	for polymino in get_tree().get_nodes_in_group("dragable"):
+		if player_city.can_be_placed(polymino):
+			can_play = true
+	
+	if !can_play or resources_manager.is_empty():
 		_on_game_over()
 
 func _on_game_over():
+	timer.stop()
+	
 	running = false
 	if (held_object):
 		held_object.get_node("Dragable").drop()
