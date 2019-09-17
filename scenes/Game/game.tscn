@@ -53,7 +53,7 @@ margin_right = 287.0
 margin_bottom = 120.0
 
 [node name="pol1" parent="VBoxContainer/Pool/Control" instance=ExtResource( 4 )]
-shape = 1
+shape = 0
 
 [node name="Control2" type="Control" parent="VBoxContainer/Pool"]
 margin_left = 437.0

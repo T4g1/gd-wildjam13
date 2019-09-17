@@ -44,6 +44,7 @@ export(bool) var ghost := false
 var bloc_packed: PackedScene = preload("res://nodes/Bloc/Bloc.tscn")
 
 var blocs: Array = []
+var occupied_position: Array = []
 var tiles: Array = [
 	[0, 0, 0, 0],
 	[0, 0, 0, 0],
@@ -83,6 +84,14 @@ func set_shape(new_shape):
 
 func set_content(new_tiles):
 	tiles = new_tiles.duplicate(true)
+	
+	occupied_position.clear()
+	
+	# Generate an array of tiles position used for optimisation of valid placement research 
+	for x in range(TETROMINO_SIZE):
+		for y in range(TETROMINO_SIZE):
+			if tiles[y][x] != -1:
+				occupied_position.append(Vector2(x, y))
 	
 	$Grid.set_content(tiles, TETROMINO_SIZE)
 

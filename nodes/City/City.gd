@@ -6,6 +6,8 @@ const RED = Color(1.0, 0.0, 0.0, 0.5)
 const GREEN = Color(0.0, 1.0, 0.0, 0.5)
 const BARELY_VISIBLE = Color(1.0, 1.0, 1.0, 0.2)
 
+var packed_polymino: PackedScene = preload("res://nodes/Polymino/Polymino.tscn")
+
 export (Vector2) var starting_point = Vector2(7, 7)
 
 func _ready():
@@ -24,7 +26,7 @@ func show_ghost(polymino):
 	var polymino_size = polymino.TETROMINO_SIZE * $Grid.cell_size
 	var offset = $Grid.rect_position - (city_size / 2) + (polymino_size / 2)
 	var cell_position = get_cell_position(polymino)
-	
+
 	# Construct ghost shape from given tetromino
 	for x in range(polymino.TETROMINO_SIZE):
 		for y in range(polymino.TETROMINO_SIZE):
@@ -66,44 +68,47 @@ func merge(polymino: Polymino):
 		return false
 
 func can_be_placed(polymino : Polymino):
-	var placement_possible = false
-	
+	# Copy the polymino so we can rotate it and modify it
+	var polymino_clone = packed_polymino.instance()
+	polymino_clone.set_content(polymino.tiles)
+
 	# For every rotation
 	for __ in range(4):
 		# Check every cell position possible for valid placement
-		for x in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
-			for y in range($Grid.grid_size):# - polymino.TETROMINO_SIZE + 1):
-				var cell_position = Vector2(x, y)
-				
-				if is_valid_placement(polymino, cell_position):
-					placement_possible = true
-		
-		polymino.clockwise_rotate()
-	
-	return placement_possible
+		for x in range($Grid.grid_size):
+			for y in range($Grid.grid_size):
+				if is_valid_placement(polymino_clone, Vector2(x, y)):
+					return true
 
-func is_valid_placement(polymino, cell_position):
+		polymino_clone.clockwise_rotate()
+
+	return false
+
+func is_valid_placement(polymino : Polymino, cell_position):
 	# Check placement position is empty
 	var check_pile : Array = []
 	var is_empty = true
-	for x in range(polymino.TETROMINO_SIZE):
-		for y in range(polymino.TETROMINO_SIZE):
-			if !polymino.get_node("Grid").is_free(x, y):
-				var city_position = Vector2(cell_position.x + x, cell_position.y + y)
-				check_pile.append(Vector2(city_position.x,     city_position.y))
-				check_pile.append(Vector2(city_position.x + 1, city_position.y))
-				check_pile.append(Vector2(city_position.x - 1, city_position.y))
-				check_pile.append(Vector2(city_position.x,     city_position.y + 1))
-				check_pile.append(Vector2(city_position.x,     city_position.y - 1))
+	for tile_position in polymino.occupied_position:
+		# Position relative to the polymino given
+		var x = tile_position.x
+		var y = tile_position.y
+		
+		# Position relative to the main city grid
+		var city_position = Vector2(cell_position.x + x, cell_position.y + y)
+		
+		check_pile.append(Vector2(city_position.x + 1, city_position.y))
+		check_pile.append(Vector2(city_position.x - 1, city_position.y))
+		check_pile.append(Vector2(city_position.x,     city_position.y + 1))
+		check_pile.append(Vector2(city_position.x,     city_position.y - 1))
 
-				if city_position.x >= 0 and  \
-					city_position.x < $Grid.grid_size and \
-					city_position.y >= 0 and  \
-					city_position.y < $Grid.grid_size:
-					is_empty = is_empty and $Grid.is_free(cell_position.x + x, cell_position.y + y)
-				else:
-					is_empty = false
-					break
+		if city_position.x >= 0 and  \
+			city_position.x < $Grid.grid_size and \
+			city_position.y >= 0 and  \
+			city_position.y < $Grid.grid_size:
+			is_empty = is_empty and $Grid.is_free(city_position.x, city_position.y)
+		else:
+			is_empty = false
+			break
 
 	# Check one adjacent tile is not empty so it connects with the island
 	var is_adjacent = false
